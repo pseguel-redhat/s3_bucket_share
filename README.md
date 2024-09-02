@@ -9,6 +9,8 @@ This playbook:
 - creates an user and an access key
 - configures a policy for this user
 
+Then the third party can use a tool such as Cyberduck 
+for uploading the file.
 
 ## Usage:
  
@@ -22,10 +24,11 @@ Via the file `extra_vars.yml` you can customize:
 
 Use `extra_vars.yml.example` as an example. 
 
-This playbooks assumes you have AWS credentials set in these env vars:
-- AWS_ACCESS_KEY_ID
-- AWS_SECRET_ACCESS_KEY
-- AWS_REGION
+This playbooks assumes you have AWS credentials set 
+in these env vars:
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION`
 
 There's an `aws.env.example` file you can use with `source aws.env.example`. `  
 
