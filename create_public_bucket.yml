@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Create bucket
+    amazon.aws.s3_bucket:
+      name: "{{ bucket_name }}" 
+      state: present
+
+  - name: Create an user called {{ user_name }}
+    community.aws.iam_user:
+      name: "{{ user_name }}"
+      state: present 
+    register: new_user
+
+  - name: Create a new access key for {{ user_name }}
+    community.aws.iam_access_key:
+      user_name: "{{ user_name }}"
+      state: present
+    no_log: false
+    register: new_access_key
+
+# agregar tiempo para que al nuevo usuario se 
+# le pueda aplicar la politica
+  - name: Apply Policies 
+    amazon.aws.s3_bucket:
+      name: "{{ bucket_name }}" 
+      policy: "{{ lookup('template','templates/policy.json.j2') }}" 
