@@ -30,13 +30,16 @@ in these env vars:
 - `AWS_SECRET_ACCESS_KEY`
 - `AWS_REGION`
 
-There's an `aws.env.example` file you can use with `source aws.env.example`. `  
+There's an `aws.env.example` file you can use with `source aws.env.example`.  
 
 After running the playbook you´ll get a bucket address
 and access key you can share with whoever needs to share
 files with you.
 
 
-## Coming Soon
+## Delete user and bucket
 
-remove bucket and user
+Just execute the following:
+```
+ansible-playbook delete_public_bucket.yml -e @extra_vars.yaml
+```
