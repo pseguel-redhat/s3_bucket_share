@@ -27,3 +27,7 @@
     amazon.aws.s3_bucket:
       name: "{{ bucket_name }}" 
       policy: "{{ lookup('template','templates/policy.json.j2') }}" 
+    register: policy_result
+    retries: 10
+    until: "policy_result is not failed"
+    delay: 10
