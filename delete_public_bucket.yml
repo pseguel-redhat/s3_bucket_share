@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - name: Delete bucket
+    amazon.aws.s3_bucket:
+      name: "{{ bucket_name }}" 
+      state: absent
+
+  - name: Delete user {{ user_name }}
+    community.aws.iam_user:
+      name: "{{ user_name }}"
+      state: absent
+
