@@ -8,15 +8,18 @@ This playbook:
 - creates a S3 bucket
 - creates an user and an access key
 - configures a policy for this user
+- creates a `s3_credentials.txt` with the info
 
 Then the third party can use a tool such as Cyberduck 
-for uploading the file.
+to use the bucket.
 
 ## Usage:
  
 ```
 ansible-playbook create_public_bucket.yml -e @extra_vars.yaml
 ```
+
+Then you'll have a `s3_credentials.txt` file with the credentials.
 
 Via the file `extra_vars.yml` you can customize:
 - user name via variable `user_name`
