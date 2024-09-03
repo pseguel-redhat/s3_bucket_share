@@ -18,11 +18,9 @@
     community.aws.iam_access_key:
       user_name: "{{ user_name }}"
       state: present
-    no_log: false
+    no_log: true
     register: new_access_key
 
-# agregar tiempo para que al nuevo usuario se 
-# le pueda aplicar la politica
   - name: Apply Policies 
     amazon.aws.s3_bucket:
       name: "{{ bucket_name }}" 
@@ -31,3 +29,12 @@
     retries: 10
     until: "policy_result is not failed"
     delay: 10
+
+  - name: Create a file with S3 credentials
+    template:
+      src: templates/s3_credentials.j2
+      dest: s3_credentials.txt
+
+  - name: Final info
+    debug:
+      msg: "Credentials stored in s3_credentials.txt" 
